@@ -9,11 +9,15 @@ import os
 from flask import Flask
 import flask_monitoringdashboard as dashboard
 from flask_cors import CORS
+from utils import train_val_insert
 
 app = Flask(__name__)       # The Flask application object used to serve requests.
 dashboard.blind(app)        # Initialize the Flask-MonitoringDashboard plugin.
 CORS(app)                   # Enable CORS support for all endpoints.
 
+def training():
+    path = ""
+    train_val_obj = train_val_insert.train_validation(path)
 
 port = int(os.get("PORT", 5000))    # The port number to listen on, or 5000 by default.
 if __name__ == "__main__":
